@@ -10,6 +10,10 @@
     "@types/node": "^12.20.37",
     "@types/react": "^17.0.37",
     "@types/react-dom": "^17.0.11",
+<<<<<<< HEAD
+=======
+    "node-sass": "^6.0.1",
+>>>>>>> 160c4acee6432b7804c4aaf7c0104db8c6a6823a
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
