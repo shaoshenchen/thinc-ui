@@ -11,12 +11,12 @@ thinc-ui/
       Button/
         button.tsx
         button.test.tsx
-        style.scss(组件单独样式)
+        style.scss (组件单独样式)
       ...
     styles/
-      _variables.scss(全局变量以及可配置设置)
-      _mixins.scss(全局 mixins)
-      _functions.scss(全局 functions)
+      _variables.scss (全局变量以及可配置设置)
+      _mixins.scss (全局 mixins)
+      _functions.scss (全局 functions)
     index.tsx
   
 ```
@@ -26,3 +26,21 @@ thinc-ui/
   - 产品色板 —— 品牌色 + 功能色板
 
 4. 添加 normalize.css
+
+# Button 组件需求分析
+- 属性
+  - 不同 Type (Primary/Default/Error)
+  - 不同 Size (Normal/Small/Large)
+  - Disabled 状态
+- 使用方法
+```html
+<Button
+  type='primary'
+  size='lg'
+  href='?'
+  className='?'
+  disabled
+>
+  thinc-ui Button
+</Button>
+```

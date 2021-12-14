@@ -1,0 +1,39 @@
+.btn {
+  margin: 10px;
+
+  position: relative;
+  @include button-style($gray-7, $white, $border-default, 'default');
+  // color           : $gray-7;
+  // background-color: $white;
+  // border          : $border-default;
+  @include button-size($btn-padding-y, $btn-padding-x, $btn-font-size, $btn-border-radius);
+  cursor    : pointer;
+  transition: color .3s, border .3s;
+
+  &:hover {
+    color: $blue;
+    border-color: $blue;
+  }
+
+  &:disabled,
+  &.disabled {
+    cursor : not-allowed;
+    opacity: .65;
+  }
+}
+
+.btn-primary {
+  @include button-style($white, $blue, $border-primary, 'primary');
+}
+
+.btn-dashed {
+  @include button-style($gray-7, $white, $border-dashed, 'dashed');
+}
+
+.btn-text {
+  @include button-style($gray-7, $white, $border-text, 'text');
+}
+
+.btn-link {
+  @include button-style($blue, $white, $border-link, 'link');
+}

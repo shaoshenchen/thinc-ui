@@ -1,3 +1,5 @@
+// 组件库样式变量分类
+
 // 中性色
 $white : #fff !default;
 $gray-1: #eee !default;
@@ -11,12 +13,12 @@ $black : #000 !default;
 
 // 基础色
 $blue  : #1689e0 !default;
-$purple: #813c85 !default;
-$pink  : #f1b5ad !default;
-$red   : #dd1414 !default;
+$purple: #c229ca !default;
+$pink  : #fdbec8 !default;
+$red   : #f51a1a !default;
 $orange: #f97d1c !default;
-$yellow: #cec216 !default;
-$green : #1ac422 !default;
+$yellow: #faf742 !default;
+$green : #1ef329 !default;
 
 // 功能色
 $primary  : $blue !default;
@@ -166,6 +168,21 @@ $pre-color     : null !default;
 $enable-pointer-cursor-for-buttons: true !default;
 
 // 边框 和 border radius
+$border-default: 1px solid $gray-3 !default;
+$border-primary: 1px solid transparent !default;
+$border-dashed: 1px dashed $gray-3 !default;
+$border-text: 1px solid transparent !default;
+$border-link: 1px solid transparent !default;
+
+$border-width-thin: thin !default;
+$border-width-medium: medium !default;
+$border-width-thick: thick !default;
+
+$border-style-solid: solid;
+$border-style-none: none;
+$border-style-dashed: dashed;
+
+$border-color-transparent: transparent;
 
 $border-width: 1px !default;
 $border-color: $gray-3 !default;

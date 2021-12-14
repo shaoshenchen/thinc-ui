@@ -1,0 +1,61 @@
+@mixin button-size($padding-y, $padding-x, $font-size, $border-raduis) {
+  padding      : $padding-y $padding-x;
+  font-size    : $font-size;
+  border-radius: $border-raduis;
+}
+
+@mixin button-style($color,
+  $background-color,
+  $border,
+  $type: 'default',
+) {
+  color           : $color;
+  background-color: $background-color;
+  border          : $border;
+
+  // btn-primary
+  @if $type=='primary' {
+    color           : $white;
+    background-color: $blue;
+    border          : 1px solid transparent;
+    transition      : background-color .3s;
+
+    &:hover {
+      color           : $white;
+      background-color: lighten($blue, 7.5%);
+    }
+  }
+
+  @if $type=='dashed' {
+    &:hover {
+      color       : $blue;
+      border-color: $blue;
+    }
+  }
+
+  // btn-text
+  @if $type=='text' {
+    &:hover {
+      color       : $gray-7;
+      border-color: transparent;
+    }
+  }
+
+  // btn-link
+  @if $type=='link' {
+    &:hover {
+      color          : lighten($color, 20%);
+      text-decoration: none;
+      border         : $border-link;
+    }
+  }
+
+  &:disabled:hover {
+    color       : $color;
+    border-color: $border-color;
+  }
+  &.disabled:hover {
+    color: $color;
+    border: $border-link;
+  }
+}
