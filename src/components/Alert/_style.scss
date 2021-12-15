@@ -1,0 +1,36 @@
+.alert {
+  position : fixed;
+  display  : flex;
+  top      : 10%;
+  left     : 50%;
+  transform: translateX(-50%);
+  padding  : .75em 1.75em;
+  color    : $gray-6;
+  font-size: .75em;
+
+  // 关闭按钮
+  .alert-close {
+    .btn.btn-text {
+      font-size       : .75em;
+      line-height     : .75em;
+      padding         : 0;
+      background-color: transparent;
+    }
+  }
+}
+
+.alert-success {
+  @include alert-color(lighten($green, 40%), $green)
+}
+
+.alert-info {
+  @include alert-color(lighten($blue, 40%), $blue)
+}
+
+.alert-warning {
+  @include alert-color(lighten($yellow, 40%), $yellow)
+}
+
+.alert-error {
+  @include alert-color(lighten($red, 40%), $red)
+}

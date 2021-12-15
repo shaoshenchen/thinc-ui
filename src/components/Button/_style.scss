@@ -1,6 +1,4 @@
 .btn {
-  margin: 10px;
-
   position: relative;
   @include button-style($gray-7, $white, $border-default, 'default');
   // color           : $gray-7;

@@ -54,8 +54,14 @@
     color       : $color;
     border-color: $border-color;
   }
+
   &.disabled:hover {
-    color: $color;
+    color : $color;
     border: $border-link;
   }
+}
+
+@mixin alert-color($background-color, $border-color) {
+  background-color: $background-color;
+  border    : 1px solid $border-color;
 }
