@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 import classNames from 'classnames'
 import Button, { ButtonType } from '../Button/button'
 
@@ -15,11 +16,16 @@ interface BaseAlertProps {
   alertTitle?: string;
   alertContent?: string;
   closable?: boolean;
+  onClose?: React.MouseEventHandler;
   children: React.ReactNode;
 }
 
 // 不是原生 DOM 如何绑定一些方法，比如 close 时触发的回调？
 // type AlertProps = BaseAlertProps & React.Alert
+
+// 将放置 alert 组件的容器插到 body 元素末尾
+const div: HTMLElement = document.createElement('div')
+document.body.append(div)
 
 const Alert: React.FC<BaseAlertProps> = (props) => {
   const {
@@ -27,7 +33,8 @@ const Alert: React.FC<BaseAlertProps> = (props) => {
     alertType,
     alertTitle,
     alertContent,
-    closable
+    closable,
+    onClose
   } = props
   // alert, alert-success, alert-info
   // alert-warning, alert-error
@@ -36,21 +43,29 @@ const Alert: React.FC<BaseAlertProps> = (props) => {
     'closable': closable
   })
 
-  return (
-    <div className={classes}>
-      <div className='alert-message'>
-        <div className="alert-title">
-          {alertTitle}
+  return ReactDOM.createPortal(
+    (
+      <div className={classes}>
+        <div className='alert-message'>
+          <div className="alert-title">
+            {alertTitle}
+          </div>
+          <div className="alert-content">
+            {alertContent}
+          </div>
         </div>
-        <div className="alert-content">
-          {alertContent}
-        </div>
+        {/* 右上角有无关闭按钮 */}
+        {
+          closable ? (
+            <div className='alert-close'>
+              <Button btnType={ButtonType.Text} onClick={onClose}>x</Button>
+            </div>
+          ) : (<></>)
+        }
       </div>
-      <div className='alert-close'>
-        <Button btnType={ButtonType.Text}>x</Button>
-      </div>
-    </div>
-  )
+
+    ), div)
+
 }
 
 export default Alert
