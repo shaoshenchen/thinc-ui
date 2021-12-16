@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Button, { ButtonType } from './components/Button/button';
 import Alert, { AlertType } from './components/Alert/alert'
+import Menu from './components/Menu/menu';
+import MenuItem from './components/Menu/menuItem';
 
 
 function App() {
@@ -40,6 +42,20 @@ function App() {
 
   return (
     <div className="App">
+      <div className="menu-components">
+        <Menu onSelect={idx => alert(idx)}>
+          <MenuItem index={0}>
+            item - 0
+          </MenuItem>
+          <MenuItem index={1} disabled>
+            item - 1
+          </MenuItem>
+          <MenuItem index={2}>
+            item - 2
+          </MenuItem>
+        </Menu>
+      </div>
+
       <div className="button-components">
         <div className="abled">
           <Button btnType={ButtonType.Primary}> Primary </Button>

@@ -1,12 +1,14 @@
 # 组件库开发流程
+
 1. 给组件库起一个喜欢的名字
 2. 确定代码目录结构，避免多层嵌套
+
 ```
-thinc-ui/
-  README.md
-  tsconfig.json
-  package.json
-  src/
+   thinc-ui/
+   README.md
+   tsconfig.json
+   package.json
+   src/
     components/
       Button/
         button.tsx
@@ -18,29 +20,61 @@ thinc-ui/
       _mixins.scss (全局 mixins)
       _functions.scss (全局 functions)
     index.tsx
-  
 ```
+
 3. 选择色彩体系
-参考 [中国传统颜色](http://zhongguose.com/)
-  - 系统色板 —— 基础色板 + 中性色板
-  - 产品色板 —— 品牌色 + 功能色板
+   参考 [中国传统颜色](http://zhongguose.com/)
+   
+   - 系统色板 —— 基础色板 + 中性色板
+   - 产品色板 —— 品牌色 + 功能色板
 
 4. 添加 normalize.css
 
 # Button 组件需求分析
+
 - 属性
   - 不同 Type (Primary/Default/Error)
   - 不同 Size (Normal/Small/Large)
   - Disabled 状态
 - 使用方法
-```html
-<Button
+  
+  ```html
+  <Button
   type='primary'
   size='lg'
   href='?'
   className='?'
   disabled
->
+  >
   thinc-ui Button
-</Button>
+  </Button>
+  ```
+
+# Menu 组件需求分析
+
+* 样式
+  + 横向
+  + 纵向
+* 状态
+  + 高亮（选中）
+  + disabled（不可选中）
+  + 下拉菜单
+
+属性分析
+
+```ts
+interface MenuProps {
+  activeIndex: number;
+  mode: string;
+  onSelect: (selectedIndex: number) => void;
+  className: string;
+}
+
+interface MenuItemProps {
+  index: number;
+  disabled: boolean;
+  className: string;
+}
 ```
+
+![](C:\Users\16000\AppData\Roaming\marktext\images\2021-12-16-21-51-29-image.png)
