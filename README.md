@@ -1,6 +1,11 @@
 # thinc-ui
 an epic UI components library
 
+# 用到的技术
+- React hook
+- TypeScript
+- Jest
+
 # QA
 1. How does the program base a reference without a suffix, such as `import App from './App';`.
 
