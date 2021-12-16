@@ -32,6 +32,8 @@ describe('Button component', () => {
     fireEvent.click(element)
     expect(defaultProps.onClick).toHaveBeenCalled()
   })
+
+
   it('render the component based on different props', () => {
     const wrapper = render(<Button {...testProps}>Nice</Button>)
     const element = wrapper.getByText('Nice')
@@ -39,6 +41,8 @@ describe('Button component', () => {
     expect(element).toBeInTheDocument()
     expect(element).toHaveClass('btn btn-primary klass')
   })
+
+
   it('render a link when btnType equals link and href is provided', () => {
     const wrapper = render(<Button btnType={ButtonType.Link} href='http://dummyurl'>Link</Button>)
     const element = wrapper.getByText('Link')
@@ -47,6 +51,8 @@ describe('Button component', () => {
     expect(element.tagName).toEqual('A')
     expect(element).toHaveClass('btn btn-link')
   })
+
+
   it('render a disabled button when disabled set to true', () => {
     const wrapper = render(<Button {...disabledProps}>Nice</Button>)
     const element = wrapper.getByText('Nice') as HTMLButtonElement
