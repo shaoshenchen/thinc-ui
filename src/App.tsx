@@ -38,7 +38,6 @@ function App() {
     document.body.onkeydown = fn
   }, [])
 
-  // console.log('start');
   return (
     <div className="App">
       <div className="button-components">

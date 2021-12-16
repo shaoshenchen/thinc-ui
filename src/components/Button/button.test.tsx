@@ -1,4 +1,3 @@
-import React from 'react-dom'
 import { render, fireEvent } from '@testing-library/react'
 import Button, { ButtonType } from './button'
 
