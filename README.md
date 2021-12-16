@@ -25,3 +25,6 @@ an epic UI components library
 *不过这种方法必须在 useEffect 也就是生命周期里调用，否则会报警告，而且会产生多余的 div 标签*
 
 > Alert 组件返回的时候用 ReactDOM.createPortal(child, target)，该函数第二个参数 target 可以指定挂载的 DOM 对象。只需在组件外部声明一个 div，就可以把 Alert 里的内容挂载到 target 上
+
+# 相关资料
+- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro)
