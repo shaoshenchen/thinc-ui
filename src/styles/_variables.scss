@@ -170,16 +170,16 @@ $enable-pointer-cursor-for-buttons: true !default;
 // 边框 和 border radius
 $border-default: 1px solid $gray-3 !default;
 $border-primary: 1px solid transparent !default;
-$border-dashed: 1px dashed $gray-3 !default;
-$border-text: 1px solid transparent !default;
-$border-link: 1px solid transparent !default;
+$border-dashed : 1px dashed $gray-3 !default;
+$border-text   : 1px solid transparent !default;
+$border-link   : 1px solid transparent !default;
 
-$border-width-thin: thin !default;
+$border-width-thin  : thin !default;
 $border-width-medium: medium !default;
-$border-width-thick: thick !default;
+$border-width-thick : thick !default;
 
-$border-style-solid: solid;
-$border-style-none: none;
+$border-style-solid : solid;
+$border-style-none  : none;
 $border-style-dashed: dashed;
 
 $border-color-transparent: transparent;
@@ -250,9 +250,9 @@ border-color .15s ease-in-out !default;
 // menu-item
 $menu-item-padding-y          : .5rem !default;
 $menu-item-padding-x          : 1rem !default;
-$menu-item-active-color       : $primary !default;
+$menu-item-active-color       : $blue !default;
 $menu-item-active-border-width: 2px !default;
-$menu-item-disabled-color     : $gray-6 !default;
+$menu-item-disabled-color     : $gray-2 !default;
 
 //sub-menu
 //submenu

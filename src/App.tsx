@@ -43,7 +43,18 @@ function App() {
   return (
     <div className="App">
       <div className="menu-components">
-        <Menu onSelect={idx => alert(idx)}>
+        <Menu>
+          <MenuItem index={0}>
+            item - 0
+          </MenuItem>
+          <MenuItem index={1} disabled>
+            item - 1
+          </MenuItem>
+          <MenuItem index={2}>
+            item - 2
+          </MenuItem>
+        </Menu>
+        <Menu mode='vertical'>
           <MenuItem index={0}>
             item - 0
           </MenuItem>
