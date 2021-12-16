@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button, { ButtonType } from './components/Button/button';
 import Alert, { AlertType } from './components/Alert/alert'
 
@@ -15,6 +15,30 @@ function App() {
   const [showAlertWarning, setAlertWarning] = useState(false)
   const [showAlertError, setAlertError] = useState(false)
 
+  // 生命周期
+  useEffect(() => {
+    // 按下 Esc 时删除视图最上层的 alert
+    const fn = (e: KeyboardEvent) => {
+      const div = document.body.lastElementChild
+
+      if (div?.tagName === 'DIV' && e.key === 'Escape') {
+        const className: string | undefined = div?.lastElementChild?.className
+
+        // 根据不同 alert 组件修改对应 state
+        if (className?.includes('alert-success')) setAlertSuccess(false)
+        if (className?.includes('alert-info')) setAlertInfo(false)
+        if (className?.includes('alert-warning')) setAlertWarning(false)
+        if (className?.includes('alert-error')) setAlertError(false)
+
+        // 留着警醒自己！这一步是多余的，会连续删除两个节点！
+        // div?.lastElementChild?.remove()
+      }
+
+    }
+    document.body.onkeydown = fn
+  }, [])
+
+  // console.log('start');
   return (
     <div className="App">
       <div className="button-components">

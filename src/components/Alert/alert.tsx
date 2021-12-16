@@ -17,11 +17,9 @@ interface BaseAlertProps {
   alertContent?: string;
   closable?: boolean;
   onClose?: React.MouseEventHandler;
+  onKeyDown?: React.KeyboardEventHandler;
   children: React.ReactNode;
 }
-
-// 不是原生 DOM 如何绑定一些方法，比如 close 时触发的回调？
-// type AlertProps = BaseAlertProps & React.Alert
 
 // 将放置 alert 组件的容器插到 body 元素末尾
 const div: HTMLElement = document.createElement('div')
