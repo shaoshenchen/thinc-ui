@@ -18,7 +18,7 @@ interface BaseAlertProps {
   closable?: boolean;
   onClose?: React.MouseEventHandler;
   onKeyDown?: React.KeyboardEventHandler;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 // 将放置 alert 组件的容器插到 body 元素末尾
