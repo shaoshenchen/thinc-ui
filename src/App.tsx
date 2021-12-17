@@ -44,24 +44,24 @@ function App() {
     <div className="App">
       <div className="menu-components">
         <Menu>
-          <MenuItem index={0}>
+          <MenuItem>
             item - 0
           </MenuItem>
-          <MenuItem index={1} disabled>
+          <MenuItem disabled>
             item - 1
           </MenuItem>
-          <MenuItem index={2}>
+          <MenuItem>
             item - 2
           </MenuItem>
         </Menu>
         <Menu mode='vertical'>
-          <MenuItem index={0}>
+          <MenuItem>
             item - 0
           </MenuItem>
-          <MenuItem index={1} disabled>
+          <MenuItem disabled>
             item - 1
           </MenuItem>
-          <MenuItem index={2}>
+          <MenuItem>
             item - 2
           </MenuItem>
         </Menu>

@@ -40,15 +40,17 @@ const Menu: React.FC<MenuProps> = (props) => {
     onSelect && onSelect(index)
   }
   const passedContext: IMenuContext = {
-    index: currentActive,
+    index: currentActive || 0,
     onSelect: handleClick
   }
   const renderChildren = () => {
-    return React.Children.map(children, (child, idx) => {
+    return React.Children.map(children, (child, index) => {
       const childElem = child as React.FunctionComponentElement<MenuItemProps>
       const { displayName } = childElem.type
       if (displayName === 'MenuItem') {
-        return child
+        return React.cloneElement(childElem, {
+          index
+        })
       } else {
         console.error('Warning: Menu has a child which is not a MenuItem component')
       }
