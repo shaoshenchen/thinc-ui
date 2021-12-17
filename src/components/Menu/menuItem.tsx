@@ -22,10 +22,15 @@ const MenuItem: React.FC<MenuItemProps> = (props) => {
     'menu-disabled': disabled,
     'menu-active': context.index === index
   })
-  const handleClick = () => {    
+  const handleClick = () => {
+    // 给 li 设置 menu-active 类
     if (context.onSelect && !disabled && (typeof index === 'string')) {
       context.onSelect(index)
     }
+    console.log(context.index, index);
+    
+    // 给 menu-submenu 设置 menu-active 类
+    // if ()
   }
 
   return (

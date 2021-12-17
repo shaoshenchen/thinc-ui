@@ -26,5 +26,8 @@ an epic UI components library
 
 > Alert 组件返回的时候用 ReactDOM.createPortal(child, target)，该函数第二个参数 target 可以指定挂载的 DOM 对象。只需在组件外部声明一个 div，就可以把 Alert 里的内容挂载到 target 上
 
+5. Menu 组件中的 MenuItem 是如何实现自动设置 index 这一属性的？
+> React.Children.map 可以获取元素的下标，React.cloneElement 可以将属性浅层合并到元素上。所以把 map 中的 index 传给 cloneElement 即可。
+
 # 相关资料
 - [React Testing Library](https://testing-library.com/docs/react-testing-library/intro)

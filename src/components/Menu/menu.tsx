@@ -33,18 +33,19 @@ const Menu: React.FC<MenuProps> = (props) => {
     onSelect,
     children,
   } = props
-  const [currentActive, setActive] = useState(defaultIndex)
+  // 管理 menu-item 的 menu-active 状态
+  const [menuItemActive, setMenuItemActive] = useState(defaultIndex)
   const classes = classNames('menu', className, {
     'menu-vertical': mode === 'vertical',
   })
-  const handleClick = (index: string) => {
-    setActive(index)
+  const handleClick = (index: string) => {    
+    setMenuItemActive(index)
     // 用户自定义回调
     onSelect && onSelect(index)
   }
   // 传递的 context
   const passedContext: IMenuContext = {
-    index: currentActive || '0',
+    index: menuItemActive || '0',
     mode,
     defaultOpenSubMenu,
     onSelect: handleClick,

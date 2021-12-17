@@ -6,6 +6,7 @@
   list-style   : none;
   border-bottom: $menu-border-width solid $menu-border-color;
   box-shadow   : $menu-box-shadow;
+  background-color: $white;
 
   .menu-item {
     text-align: center;
@@ -40,18 +41,21 @@
       list-style  : none;
       padding-left: 0;
       border      : $menu-border-width solid $menu-border-color;
+      background-color: $white;
       box-shadow  : $submenu-box-shadow;
 
       .menu-item {
         color        : $gray-7;
         border-bottom: none;
+
+        &:hover {
+          color: $blue;
+        }
       }
 
       .menu-active {
-        &:hover {
-          text-decoration: underline;
-          color          : $gray-7;
-        }
+        color           : $blue;
+        background-color: lighten($blue, 45%);
       }
     }
 
@@ -64,14 +68,21 @@
 .menu-vertical {
   flex-direction: column;
   border-right  : $menu-border-width solid $menu-border-color;
+  background-color: $white;
   width         : 300px;
-  margin        : 150px 20px 10px;
+  margin        : 10px;
+
+  :not(.menu-submenu).menu-active {
+    border-left: $menu-item-active-border-width solid $menu-item-active-color;
+    background-color: lighten($blue, 45%);
+  }
 
   .menu-item {
-    border-left: $menu-item-active-border-width solid transparent;
+    padding       : .5em 0;
+    // border-left: $menu-item-active-border-width solid transparent;
 
     &.menu-active {
-      border-left  : $menu-item-active-border-width solid $menu-item-active-color;
+      // border-left  : $menu-item-active-border-width solid $menu-item-active-color;
       border-bottom: 0px;
     }
 
@@ -81,6 +92,12 @@
   }
 
   .menu-submenu {
+    padding: 0;
+    
+    .submenu-title {
+      padding: .5em 0;
+    }
+
     .submenu-dropdown {
       position  : static;
       border    : unset;
@@ -88,6 +105,13 @@
 
       .menu-item {
         padding-left: 3em;
+      }
+
+      .menu-active {
+        border-left     : none;
+        color           : $blue;
+        background-color: lighten($blue, 45%);
+        border-left: $menu-item-active-border-width solid $menu-item-active-color;
       }
     }
   }

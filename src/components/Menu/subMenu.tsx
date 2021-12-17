@@ -13,11 +13,14 @@ export interface SubMenuProps {
 const SubMenu: React.FC<SubMenuProps> = (props) => {
   const { index, title, className, children } = props
   const context = useContext(MenuContext)
+  // 双下标处理
+  const contextIndex = context.index?.includes('-') ? context.index.split('-')[0] : context.index
   const openSubMenu = context.defaultOpenSubMenu as Array<string>
   const isOpened = (index && context.mode === 'vertical') ? openSubMenu.includes(index) : false
   const [subMenuOpen, setSubMenuOpen] = useState(isOpened)
   const classes = classNames('menu-item menu-submenu', className, {
-    'menu-active': context.index === index
+    // context.index 可能有双下标，index 一定是单下标
+    'menu-active': contextIndex === index
   })
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault()
@@ -30,6 +33,10 @@ const SubMenu: React.FC<SubMenuProps> = (props) => {
     timer = setTimeout(() => {
       setSubMenuOpen(toggle)
     }, 200)
+    // if (context.onSelect && typeof index === 'string') {
+    //   context.onSelect(index)
+    //   console.log(index);
+    // }
   }
   const clickEvents = context.mode === 'vertical' ? {
     onClick: handleClick
@@ -38,6 +45,7 @@ const SubMenu: React.FC<SubMenuProps> = (props) => {
     onMouseEnter: (e: React.MouseEvent) => { handleMouse(e, true) },
     onMouseLeave: (e: React.MouseEvent) => { handleMouse(e, false) },
   } : {}
+
   const renderChildren = () => {
     const subMenuClasses = classNames('submenu-dropdown', {
       'open': subMenuOpen
