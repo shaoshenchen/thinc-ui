@@ -3,6 +3,7 @@ import Button, { ButtonType } from './components/Button/button';
 import Alert, { AlertType } from './components/Alert/alert'
 import Menu from './components/Menu/menu';
 import MenuItem from './components/Menu/menuItem';
+import SubMenu from './components/Menu/subMenu';
 
 
 function App() {
@@ -44,26 +45,23 @@ function App() {
     <div className="App">
       <div className="menu-components">
         <Menu>
-          <MenuItem>
-            item - 0
-          </MenuItem>
-          <MenuItem disabled>
-            item - 1
-          </MenuItem>
-          <MenuItem>
-            item - 2
-          </MenuItem>
+          <MenuItem>item - 0</MenuItem>
+          <MenuItem disabled>item - 1</MenuItem>
+          <SubMenu title='dropdown'>
+            <MenuItem>down - 1</MenuItem>
+            <MenuItem>down - 2</MenuItem>
+          </SubMenu>
+          <MenuItem>item - 2</MenuItem>
         </Menu>
+
         <Menu mode='vertical'>
-          <MenuItem>
-            item - 0
-          </MenuItem>
-          <MenuItem disabled>
-            item - 1
-          </MenuItem>
-          <MenuItem>
-            item - 2
-          </MenuItem>
+          <MenuItem>item - 0</MenuItem>
+          <MenuItem disabled>item - 1</MenuItem>
+          <SubMenu title='dropdown'>
+            <MenuItem>down - 1</MenuItem>
+            <MenuItem>down - 2</MenuItem>
+          </SubMenu>
+          <MenuItem>item - 2</MenuItem>
         </Menu>
       </div>
 
