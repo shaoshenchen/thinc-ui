@@ -39,4 +39,5 @@ MenuItem.defaultProps = {
   index: 0
 }
 
+MenuItem.displayName = 'MenuItem'
 export default MenuItem
