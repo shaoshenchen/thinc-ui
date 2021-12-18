@@ -1,38 +1,56 @@
 import React from "react";
-import { cleanup, fireEvent, render, RenderResult } from "@testing-library/react";
+import { cleanup, fireEvent, render, RenderResult, wait, waitFor } from "@testing-library/react";
 import Menu, { MenuProps } from './menu'
 import MenuItem from './menuItem'
-
+import SubMenu from "./subMenu";
 
 const testProps: MenuProps = {
-  defaultIndex: 0,
+  defaultIndex: '0',
   onSelect: jest.fn(),
   className: 'menu-test',
 }
 const verticalProps: MenuProps = {
-  defaultIndex: 0,
+  defaultIndex: '0',
   mode: 'vertical'
 }
 let wrapper: RenderResult, menuElem: HTMLElement, activeElem: HTMLElement, disabledElem: HTMLElement
 const GenerateMenu = (props: MenuProps) => {
   return (
     <Menu {...props}>
-      <MenuItem index={0}>
+      <MenuItem>
         item - 0
       </MenuItem>
-      <MenuItem index={1} disabled>
+      <MenuItem disabled>
         item - 1
       </MenuItem>
-      <MenuItem index={2}>
+      <MenuItem>
         item - 2
       </MenuItem>
+      <SubMenu title="dropdown">
+        <MenuItem>dropdown-1</MenuItem>
+        <MenuItem>dropdown-2</MenuItem>
+      </SubMenu>
     </Menu>
   )
+}
+const createStyleFile = () => {
+  const cssFile: string = `
+    .submenu-dropdown {
+      display: none;
+    }
+    .submenu-dropdown.open {
+      display: block;
+    }
+  `
+  const style = document.createElement('style')
+  style.innerHTML = cssFile
+  return style
 }
 describe('test Menu and MenuItem component', () => {
   // 在每个钩子前先执行（钩子）
   beforeEach(() => {
     wrapper = render(GenerateMenu(testProps))
+    wrapper.container.appendChild(createStyleFile())
     menuElem = wrapper.getByTestId('test-menu')
     activeElem = wrapper.getByText('item - 0')
     disabledElem = wrapper.getByText('item - 1')
@@ -42,7 +60,7 @@ describe('test Menu and MenuItem component', () => {
   it('render Menu and MenuItem based on default props', () => {
     expect(menuElem).toBeInTheDocument()
     expect(menuElem).toHaveClass('menu menu-test')
-    expect(menuElem.getElementsByTagName('li').length).toEqual(3)
+    expect(menuElem.querySelectorAll(':scope > li').length).toEqual(4)
     expect(activeElem).toHaveClass('menu-item menu-active')
     expect(disabledElem).toHaveClass('menu-item menu-disabled')
   })
@@ -55,12 +73,12 @@ describe('test Menu and MenuItem component', () => {
     fireEvent.click(thirdItem)
     expect(thirdItem).toHaveClass('menu-active')
     expect(activeElem).not.toHaveClass('menu-active')
-    expect(testProps.onSelect).toHaveBeenCalledWith(2)
+    expect(testProps.onSelect).toHaveBeenCalledWith('2')
 
     // disabled 元素无法被点击
     fireEvent.click(disabledElem)
     expect(disabledElem).not.toHaveClass('menu-active')
-    expect(testProps.onSelect).not.toHaveBeenCalledWith(1)
+    expect(testProps.onSelect).not.toHaveBeenCalledWith('1')
   })
 
 
@@ -70,5 +88,23 @@ describe('test Menu and MenuItem component', () => {
     const wrapper = render(GenerateMenu(verticalProps))
     const menuElem = wrapper.getByTestId('test-menu')
     expect(menuElem).toHaveClass('menu-vertical')
+  })
+
+
+  it('show dropdown items when hover on subMenu', async () => {
+    expect(wrapper.queryByText('dropdown-1')).not.toBeVisible()
+    const dropdownElem = wrapper.getByText('dropdown')
+    fireEvent.mouseEnter(dropdownElem)
+    // submenu 的 hover 是异步操作
+    await waitFor(() => {
+      expect(wrapper.queryByText('dropdown-1')).toBeVisible()
+    })
+
+    fireEvent.click(wrapper.getByText('dropdown-2'))
+    expect(testProps.onSelect).toHaveBeenCalledWith('3-1')
+    fireEvent.mouseLeave(dropdownElem)
+    await waitFor(() => {
+      expect(wrapper.queryByText('dropdown-2')).not.toBeVisible()
+    })
   })
 })
