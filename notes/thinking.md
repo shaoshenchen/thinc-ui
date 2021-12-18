@@ -78,3 +78,12 @@ interface MenuItemProps {
 ```
 
 ![](C:\Users\16000\AppData\Roaming\marktext\images\2021-12-16-21-51-29-image.png)
+
+# 图标 Icon 解决方案
+- 上古时期 - 雪碧图（CSS sprite）
+- 近代 - Font Icon
+- 现代和未来 - SVG
+
+# SVG 优势
+- 完全可控
+- 即取即用

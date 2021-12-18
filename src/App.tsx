@@ -4,6 +4,7 @@ import Alert, { AlertType } from './components/Alert/alert'
 import Menu from './components/Menu/menu';
 import MenuItem from './components/Menu/menuItem';
 import SubMenu from './components/Menu/subMenu';
+import Tabs from './components/Tabs/tabs';
 
 
 function App() {
@@ -43,6 +44,10 @@ function App() {
 
   return (
     <div className="App">
+      <div className="tabs-components">
+        <Tabs></Tabs>
+      </div>
+
       <div className="menu-components">
         <Menu>
           <MenuItem>item - 0</MenuItem>

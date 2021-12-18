@@ -1,6 +1,9 @@
 # thinc-ui
 an epic UI components library
 
+# TODO
+- ❤ Tabs 组件
+
 # 用到的技术
 - React hook
 - TypeScript

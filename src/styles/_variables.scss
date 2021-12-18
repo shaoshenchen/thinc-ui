@@ -20,6 +20,11 @@ $orange: #f97d1c !default;
 $yellow: #faf742 !default;
 $green : #1ef329 !default;
 
+$theme-color: ('black': $black,
+  'gray': $gray-3,
+  'blue': $blue,
+);
+
 // 功能色
 $primary  : $blue !default;
 $secondary: $gray-4 !default;

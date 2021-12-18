@@ -1,9 +1,14 @@
 import classNames from 'classnames'
 import React, { FunctionComponentElement, useContext, useState } from 'react'
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons'
+import { CSSTransition } from 'react-transition-group';
 import { MenuContext } from './menu'
 import { MenuItemProps } from './menuItem'
+import Icon from '../Icon/icon';
 
 
+library.add(fas)
 export interface SubMenuProps {
   index?: string;
   title: string;
@@ -20,7 +25,8 @@ const SubMenu: React.FC<SubMenuProps> = (props) => {
   const [subMenuOpen, setSubMenuOpen] = useState(isOpened)
   const classes = classNames('menu-item menu-submenu', className, {
     // context.index 可能有双下标，index 一定是单下标
-    'menu-active': contextIndex === index
+    'menu-active': contextIndex === index,
+    'menu-selected': subMenuOpen
   })
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault()
@@ -33,10 +39,6 @@ const SubMenu: React.FC<SubMenuProps> = (props) => {
     timer = setTimeout(() => {
       setSubMenuOpen(toggle)
     }, 200)
-    // if (context.onSelect && typeof index === 'string') {
-    //   context.onSelect(index)
-    //   console.log(index);
-    // }
   }
   const clickEvents = context.mode === 'vertical' ? {
     onClick: handleClick
@@ -61,15 +63,24 @@ const SubMenu: React.FC<SubMenuProps> = (props) => {
       }
     })
     return (
-      <ul className={subMenuClasses}>
-        {childrenComponent}
-      </ul>
+      <CSSTransition
+        in={subMenuOpen}
+        timeout={300}
+        classNames='zoom-in-top'
+        appear
+        unmountOnExit
+      >
+        <ul className={subMenuClasses}>
+          {childrenComponent}
+        </ul>
+      </CSSTransition>
     )
   }
   return (
     <li key={index} className={classes} {...hoverEvents}>
       <div className='submenu-title' {...clickEvents}>
         {title}
+        <Icon className='angle-down' icon='angle-down' />
       </div>
       {renderChildren()}
     </li>
