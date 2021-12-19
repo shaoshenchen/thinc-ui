@@ -33,6 +33,11 @@ an epic UI components library
 5. Menu 组件中的 MenuItem 是如何实现自动设置 index 这一属性的？
 > React.Children.map 可以获取元素的下标，React.cloneElement 可以将属性浅层合并到元素上。所以把 map 中的 index 传给 cloneElement 即可。
 
+6. npx 是什么？
+
+> xxx
+
 # 相关资料
 - [React Testing Library](https://testing-library.com/docs/react-testing-library/intro)
 - [React Transition Group](http://reactcommunity.org/react-transition-group/)
+- [Storybook](https://storybook.js.org/)

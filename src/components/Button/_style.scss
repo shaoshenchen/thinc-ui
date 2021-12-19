@@ -1,9 +1,6 @@
 .btn {
   position: relative;
   @include button-style($gray-7, $white, $border-default, 'default');
-  // color           : $gray-7;
-  // background-color: $white;
-  // border          : $border-default;
   @include button-size($btn-padding-y, $btn-padding-x, $btn-font-size, $btn-border-radius);
   cursor    : pointer;
   transition: color .3s, border .3s;
@@ -34,4 +31,12 @@
 
 .btn-link {
   @include button-style($blue, $white, $border-link, 'link');
+}
+
+.btn-large {
+  font-size: 1.25em;
+}
+
+.btn-small {
+  font-size: .75em;
 }
