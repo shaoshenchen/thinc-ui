@@ -2,7 +2,8 @@
 an epic UI components library
 
 # TODO
-- ❤ Tabs 组件
+- [ ] Tabs 组件
+- [ ] 使用 icon 和 transition 丰富 Alert 组件
 
 # 用到的技术
 - React hook

@@ -5,7 +5,7 @@ import Menu from './components/Menu/menu';
 import MenuItem from './components/Menu/menuItem';
 import SubMenu from './components/Menu/subMenu';
 import Tabs from './components/Tabs/tabs';
-
+import Transition from './components/Transition/transition';
 
 function App() {
   const alertTestText = {
@@ -18,6 +18,7 @@ function App() {
   const [showAlertInfo, setAlertInfo] = useState(false)
   const [showAlertWarning, setAlertWarning] = useState(false)
   const [showAlertError, setAlertError] = useState(false)
+  const [showDisabledButton, setDisabledButton] = useState(false)
 
   // 生命周期
   useEffect(() => {
@@ -72,7 +73,7 @@ function App() {
 
       <div className="button-components">
         <div className="abled">
-          <Button btnType={ButtonType.Primary}> Primary </Button>
+          <Button btnType={ButtonType.Primary} onClick={() => setDisabledButton(!showDisabledButton)}> Primary </Button>
           <Button className='thinc'> Default </Button>
           <Button btnType={ButtonType.Dashed}> Dash </Button>
           <Button btnType={ButtonType.Text}> Text </Button>
@@ -80,8 +81,18 @@ function App() {
         </div>
 
         <div className="disabled">
-          <Button disabled> Default </Button>
-          <Button btnType={ButtonType.Link} disabled> Link </Button>
+          <Transition
+            in={showDisabledButton}
+            timeout={300}
+            animation='zoom-in-left'
+            wrapper={true}
+          >
+            {/* Button 有自己的 transition 属性 */}
+            {/* 和 Transition 组件的 transition 会冲突 */}
+            {/* 在他们之间夹一层 div 元素能够隔绝两者 */}
+            <Button disabled> Default </Button>
+            <Button btnType={ButtonType.Link} disabled> Link </Button>
+          </Transition>
         </div>
       </div>
 
