@@ -1,18 +1,8 @@
 import React from 'react'
 import classNames from 'classnames'
 
-export enum ButtonSize {
-  Large = 'large',
-  Small = 'small'
-}
-
-export enum ButtonType {
-  Primary = 'primary',
-  Default = 'default',
-  Dashed = 'dashed',
-  Text = 'text',
-  Link = 'link'
-}
+export type ButtonSize = 'large' | 'small'
+export type ButtonType = 'primary' | 'default' | 'dashed' | 'text' | 'link'
 
 interface BaseButtonProps {
   className?: string;
@@ -42,10 +32,10 @@ const Button: React.FC<ButtonProps> = (props) => {
   const classes = classNames('btn', className, {
     [`btn-${btnType}`]: btnType,
     [`btn-${size}`]: size,
-    'disabled': (btnType === ButtonType.Link) && disabled
+    'disabled': (btnType === 'link') && disabled
   })
 
-  if (btnType === ButtonType.Link && href) {
+  if (btnType === 'link' && href) {
     return (
       // a 链接的 disabled 添加到 class 属性中
       <a
@@ -70,7 +60,7 @@ const Button: React.FC<ButtonProps> = (props) => {
 }
 
 Button.defaultProps = {
-  // btnType: ButtonType.Default,
+  btnType: 'default',
   disabled: false
 }
 

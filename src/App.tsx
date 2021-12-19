@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Button, { ButtonType } from './components/Button/button';
-import Alert, { AlertType } from './components/Alert/alert'
+import Button from './components/Button/button';
+import Alert from './components/Alert/alert'
 import Menu from './components/Menu/menu';
 import MenuItem from './components/Menu/menuItem';
 import SubMenu from './components/Menu/subMenu';
@@ -73,11 +73,11 @@ function App() {
 
       <div className="button-components">
         <div className="abled">
-          <Button btnType={ButtonType.Primary} onClick={() => setDisabledButton(!showDisabledButton)}> Primary </Button>
+          <Button btnType='primary' onClick={() => setDisabledButton(!showDisabledButton)}> Primary </Button>
           <Button className='thinc'> Default </Button>
-          <Button btnType={ButtonType.Dashed}> Dash </Button>
-          <Button btnType={ButtonType.Text}> Text </Button>
-          <Button btnType={ButtonType.Link} href='https://www.baidu.com' target='_blank'> Link </Button>
+          <Button btnType='dashed'> Dash </Button>
+          <Button btnType='text'> Text </Button>
+          <Button btnType='link' href='https://www.baidu.com' target='_blank'> Link </Button>
         </div>
 
         <div className="disabled">
@@ -91,7 +91,7 @@ function App() {
             {/* 和 Transition 组件的 transition 会冲突 */}
             {/* 在他们之间夹一层 div 元素能够隔绝两者 */}
             <Button disabled> Default </Button>
-            <Button btnType={ButtonType.Link} disabled> Link </Button>
+            <Button btnType='link' disabled> Link </Button>
           </Transition>
         </div>
       </div>
@@ -105,7 +105,7 @@ function App() {
         {
           showAlertSuccess ? (
             <Alert
-              alertType={AlertType.Success}
+              alertType='success'
               alertTitle={alertTestText.title}
               alertContent={alertTestText.content}
               onClose={() => setAlertSuccess(false)}
@@ -118,7 +118,7 @@ function App() {
         {
           showAlertInfo ? (
             <Alert
-              alertType={AlertType.Info}
+              alertType='info'
               alertTitle={alertTestText.title}
               alertContent={alertTestText.content}
               onClose={() => setAlertInfo(false)}
@@ -131,7 +131,7 @@ function App() {
         {
           showAlertWarning ? (
             <Alert
-              alertType={AlertType.Warning}
+              alertType='warning'
               alertTitle={alertTestText.title}
               alertContent={alertTestText.content}
               onClose={() => setAlertWarning(false)}
@@ -144,7 +144,7 @@ function App() {
         {
           showAlertError ? (
             <Alert
-              alertType={AlertType.Error}
+              alertType='error'
               alertTitle={alertTestText.title}
               alertContent={alertTestText.content}
               onClose={() => setAlertError(false)}

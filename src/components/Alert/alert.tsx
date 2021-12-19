@@ -3,12 +3,7 @@ import ReactDOM from 'react-dom'
 import classNames from 'classnames'
 import Button, { ButtonType } from '../Button/button'
 
-export enum AlertType {
-  Success = 'success',
-  Info = 'info',
-  Warning = 'warning',
-  Error = 'error'
-}
+type AlertType = 'success' | 'info' | 'warning' | 'error'
 
 interface BaseAlertProps {
   className?: string;
@@ -56,7 +51,7 @@ const Alert: React.FC<BaseAlertProps> = (props) => {
         {
           closable ? (
             <div className='alert-close'>
-              <Button btnType={ButtonType.Text} onClick={onClose}>x</Button>
+              <Button btnType='text' onClick={onClose}>x</Button>
             </div>
           ) : (<></>)
         }
