@@ -34,3 +34,4 @@ an epic UI components library
 
 # 相关资料
 - [React Testing Library](https://testing-library.com/docs/react-testing-library/intro)
+- [React Transition Group](http://reactcommunity.org/react-transition-group/)
