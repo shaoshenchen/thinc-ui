@@ -62,12 +62,11 @@
   },
   "devDependencies": {
     "@storybook/addon-actions": "^6.4.9",
+    "@storybook/addon-docs": "^6.4.9",
     "@storybook/addon-essentials": "^6.4.9",
-    "@storybook/addon-info": "^5.3.21",
     "@storybook/addon-links": "^6.4.9",
     "@storybook/node-logger": "^6.4.9",
     "@storybook/preset-create-react-app": "^3.2.0",
-    "@storybook/react": "^6.4.9",
-    "@types/storybook__addon-info": "^5.2.4"
+    "@storybook/react": "^6.4.9"
   }
 }

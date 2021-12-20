@@ -4,6 +4,8 @@ an epic UI components library
 # TODO
 - [ ] Tabs 组件
 - [ ] 使用 icon 和 transition 丰富 Alert 组件
+- [ ] 完善 storybook 的 addon-info
+- [ ] storybook 自己看看文档优化
 
 # 用到的技术
 - React hook

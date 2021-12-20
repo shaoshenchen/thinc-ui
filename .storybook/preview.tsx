@@ -2,6 +2,7 @@
 import '../src/styles/index.scss';
 import { addDecorator } from '@storybook/react'
 
+
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
   controls: {
@@ -20,4 +21,5 @@ const CenterDecorator = (storyFn: any) => (
     {storyFn()}
   </div>
 )
+
 addDecorator(CenterDecorator)
