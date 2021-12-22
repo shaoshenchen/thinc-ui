@@ -1,10 +1,11 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { FC } from "react";
 import Input, { InputProps } from "../Input/input";
 import Icon from "../Icon/icon";
-
+import useDebounce from "../../hooks/useDebounce";
 
 export interface AutoCompleteProps extends Omit<InputProps, 'onSelect'> {
+  value?: string;
   onSelect?: (item: string) => void;
 }
 
@@ -46,16 +47,12 @@ const AutoComplete: FC<AutoCompleteProps> = (props) => {
   const [inputValue, setInputValue] = useState(value || '')
   const [suggestions, setSuggestions] = useState<SuggestionProps[]>([])
   const [loading, setloading] = useState(false)
+  const debounceValue = useDebounce(inputValue)
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    // 输入框显示的值
-    const val = e.target.value
-    setInputValue(val)
-    setloading(true)
-
-    if (val) {
+  useEffect(() => {
+    if (debounceValue) {
       // 将搜索关键字小写
-      const formativeValue = val.trim().toLowerCase()
+      const formativeValue = debounceValue.trim().toLowerCase()
       const results = fetchSuggesstions(formativeValue)
       results.then(data => {
         setloading(false)
@@ -65,20 +62,29 @@ const AutoComplete: FC<AutoCompleteProps> = (props) => {
       setloading(false)
       setSuggestions([])
     }
+  }, [debounceValue])
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    // 输入框显示的值
+    const val = e.target.value
+    setInputValue(val)
+    setloading(true)
   }
+
   // 点击 li 标签自动补全 Input
   const handleClick = (item: SuggestionProps) => {
     setInputValue(item.value)
     setSuggestions([])
     onSelect && onSelect(item.value)
   }
+
   return (
     <div className="auto-complete">
       <Input value={inputValue} onChange={handleChange} {...restProps} />
       <ul>
         {loading ?
           // 加载图标
-          <Icon icon='spinner' spin/> :
+          <Icon icon='spinner' spin /> :
           // 渲染列表
           suggestions.map((item, idx) => {
             return (
@@ -87,8 +93,8 @@ const AutoComplete: FC<AutoCompleteProps> = (props) => {
                 <p>{item.id}</p>
               </li>
             )
-          }
-          )}
+          })
+        }
       </ul>
     </div>
   )
