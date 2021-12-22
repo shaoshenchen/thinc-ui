@@ -1,14 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import classNames from 'classnames'
-import Button, { ButtonType } from '../Button/button'
+import Button from '../Button/button'
 
 type AlertType = 'success' | 'info' | 'warning' | 'error'
 
 interface BaseAlertProps {
   className?: string;
   alertType?: AlertType;
-  alertTitle?: string;
+  // alertTitle?: string; 暂时删去，用 alertType 代替
   alertContent?: string;
   closable?: boolean;
   onClose?: React.MouseEventHandler;
@@ -16,15 +16,16 @@ interface BaseAlertProps {
   children?: React.ReactNode;
 }
 
-// 将放置 alert 组件的容器插到 body 元素末尾
+// 将放置 Alert 组件的容器插到 body 元素末尾
 const div: HTMLElement = document.createElement('div')
+div.classList.add('alert-container')
 document.body.append(div)
 
 const Alert: React.FC<BaseAlertProps> = (props) => {
   const {
     className,
     alertType,
-    alertTitle,
+    // alertTitle,
     alertContent,
     closable,
     onClose
@@ -36,12 +37,25 @@ const Alert: React.FC<BaseAlertProps> = (props) => {
     'closable': closable
   })
 
+  const getAlertTitle = () => {
+    switch (alertType) {
+      case 'success':
+        return 'Success Tips'
+      case 'info':
+        return 'Informational Notes'
+      case 'warning':
+        return 'Warning'
+      case 'error':
+        return 'Error'
+    }
+  }
+
   return ReactDOM.createPortal(
     (
       <div className={classes}>
         <div className='alert-message'>
           <div className="alert-title">
-            {alertTitle}
+            {getAlertTitle()}
           </div>
           <div className="alert-content">
             {alertContent}

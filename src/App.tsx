@@ -97,6 +97,10 @@ function App() {
       </div>
 
       <div className="alert-components">
+        {/* Alert 根据 alertType 输出 */}
+        {/* 
+          addAlert(alertType) 往 div 增加一条 alert
+        */}
         <button onClick={() => setAlertSuccess(true)}>Success - {showAlertSuccess ? '关闭' : '显示'}</button>
         <button onClick={() => setAlertInfo(true)}>Info - {showAlertInfo ? '关闭' : '显示'}</button>
         <button onClick={() => setAlertWarning(true)}>Warning - {showAlertWarning ? '关闭' : '显示'}</button>
@@ -106,20 +110,16 @@ function App() {
           showAlertSuccess ? (
             <Alert
               alertType='success'
-              alertTitle={alertTestText.title}
               alertContent={alertTestText.content}
               onClose={() => setAlertSuccess(false)}
               closable
-            >
-              Success
-            </Alert>
+            />
           ) : (<></>)
         }
         {
           showAlertInfo ? (
             <Alert
               alertType='info'
-              alertTitle={alertTestText.title}
               alertContent={alertTestText.content}
               onClose={() => setAlertInfo(false)}
               closable
@@ -132,7 +132,6 @@ function App() {
           showAlertWarning ? (
             <Alert
               alertType='warning'
-              alertTitle={alertTestText.title}
               alertContent={alertTestText.content}
               onClose={() => setAlertWarning(false)}
               closable
@@ -145,7 +144,6 @@ function App() {
           showAlertError ? (
             <Alert
               alertType='error'
-              alertTitle={alertTestText.title}
               alertContent={alertTestText.content}
               onClose={() => setAlertError(false)}
               closable
