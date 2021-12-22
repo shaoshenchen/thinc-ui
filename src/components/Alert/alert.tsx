@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import classNames from 'classnames'
-import Button, { ButtonType } from '../Button/button'
+import Button from '../Button/button'
 
 type AlertType = 'success' | 'info' | 'warning' | 'error'
 
