@@ -1,0 +1,14 @@
+.input {
+  width: 200px;
+  height: 32px;
+
+  &.input-small {
+    width: 150px;
+    height: 24px;
+  }
+
+  &.input-large {
+    width: 250px;
+    height: 40px;
+  }
+}
