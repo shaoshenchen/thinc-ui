@@ -4,7 +4,7 @@ import AutoComplete from "./autoComplete";
 
 
 const DefaultAutoComplete = () => (
-  <AutoComplete onSelect={action('actions')} />
+  <AutoComplete onSelect={action('actions')} placeholder="GitHub 用户查询" />
 )
 
 storiesOf('AutoComplete', module)
