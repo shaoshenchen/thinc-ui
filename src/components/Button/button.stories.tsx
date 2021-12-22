@@ -24,7 +24,15 @@ const buttonWithType = () => (
   </>
 )
 
+const buttonWithDisabled = () => (
+  <>
+    <Button disabled> Default </Button>
+    <Button btnType='link' disabled> Link </Button>
+  </>
+)
+
 storiesOf('Button', module)
   .add('默认 Button', defaultButton)
   .add('不同尺寸 Button', buttonWithSize)
   .add('不同类型 Button', buttonWithType)
+  .add('禁用 Button', buttonWithDisabled)
