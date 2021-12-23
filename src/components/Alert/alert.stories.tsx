@@ -3,7 +3,7 @@ import Alert from "./alert";
 
 
 // 将放置 Alert 组件的容器插到 body 元素末尾
-const div = document.getElementsByClassName('alert-container')
+// const div = document.getElementsByClassName('alert-container')
 
 
 /**
