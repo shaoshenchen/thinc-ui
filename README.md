@@ -6,6 +6,7 @@ an epic UI components library
 - [ ] 使用 icon 和 transition 丰富 Alert 组件
 - [ ] 完善 storybook 的 addon-info
 - [ ] storybook 自己看看文档优化
+- [ ] AutoComplete 组件单元测试
 
 # 用到的技术
 - React hook

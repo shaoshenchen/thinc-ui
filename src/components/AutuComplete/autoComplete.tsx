@@ -3,6 +3,7 @@ import { FC } from "react";
 import Input, { InputProps } from "../Input/input";
 import Icon from "../Icon/icon";
 import useDebounce from "../../hooks/useDebounce";
+import useClickOutside from "../../hooks/useClickOutside";
 import classNames from "classnames";
 
 export interface AutoCompleteProps extends Omit<InputProps, 'onSelect'> {
@@ -50,7 +51,10 @@ const AutoComplete: FC<AutoCompleteProps> = (props) => {
   const [loading, setloading] = useState(false)
   const [highlightIndex, setHighlightIndex] = useState(-1)
   const triggerSelect = useRef(false)
+  const componentRef = useRef<HTMLDivElement>(null)
   const debounceValue = useDebounce(inputValue)
+
+  useClickOutside(componentRef, () => { setSuggestions([]) })
 
   useEffect(() => {
     if (debounceValue && triggerSelect.current) {
@@ -147,7 +151,7 @@ const AutoComplete: FC<AutoCompleteProps> = (props) => {
   }
 
   return (
-    <div className="auto-complete">
+    <div className="auto-complete" ref={componentRef}>
       <Input value={inputValue} onChange={handleChange} onKeyDown={handleKeyDown} {...restProps} />
       <ul>
         {showUserList()}
