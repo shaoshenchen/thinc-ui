@@ -5,16 +5,20 @@ import Button from "../Button/button"
 
 export interface UploadProps {
   action: string;
+  beforeUpload?: (file: File) => boolean | Promise<File>;
   onProgress?: (percentage: number, file: File) => void;
   onSuccess?: (data: any, file: File) => void;
   onError?: (err: any, file: File) => void;
+  onChange?: (file: File) => void;
 }
 const Upload: React.FC<UploadProps> = (props) => {
   const {
     action,
+    beforeUpload,
     onProgress,
     onSuccess,
     onError,
+    onChange,
   } = props
   const fileInput = useRef<HTMLInputElement>(null)
   const axiosConfig = (file: File) => {
@@ -54,24 +58,51 @@ const Upload: React.FC<UploadProps> = (props) => {
     }
   }
 
+  const post = (file: File) => {
+    const formData = new FormData()
+    formData.append(file.name, file)
+    axios.post(action, formData, axiosConfig(file))
+      .then((res) => {
+        console.log(res)
+        if (onSuccess) {
+          onSuccess(res.data, file)
+        }
+        if (onChange) {
+          onChange(file)
+        }
+      })
+      .catch((err) => {
+        console.error(err)
+        if (onError) {
+          onError(err, file)
+        }
+        if (onChange) {
+          onChange(file)
+        }
+      })
+  }
+
   const uploadFiles = (files: FileList) => {
     let postFiles = Array.from(files)
     postFiles.forEach((file) => {
-      const formData = new FormData()
-      formData.append(file.name, file)
-      axios.post(action, formData, axiosConfig(file))
-        .then((res) => {
-          console.log(res)
-          if (onSuccess) {
-            onSuccess(res.data, file)
-          }
-        })
-        .catch((err) => {
-          console.error(err)
-          if (onError) {
-            onError(err, file)
-          }
-        })
+      // beforeUpload 生命周期
+      if (beforeUpload) {
+        const result = beforeUpload(file)
+        // 返回 Promise
+        if (result && result instanceof Promise) {
+          result.then(item => {
+            post(item)
+          })
+        }
+        // 返回 true 或 undefined
+        else if (result === true) {
+          post(file)
+        }
+      }
+      // 不经过 beforeUpload
+      else {
+        post(file)
+      }
     })
   }
 
