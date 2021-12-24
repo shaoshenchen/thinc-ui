@@ -1,12 +1,12 @@
 import { action } from "@storybook/addon-actions"
 import { storiesOf } from "@storybook/react"
-import Upload from "./upload"
+import Upload, { UploadFile } from "./upload"
 
 
 const checkFileSize = (file: File) => {
-  const kbLimit = 50
-  if (Math.round(file.size / 1024) > kbLimit) {
-    alert(`File should be limit to ${kbLimit} KB`)
+  const mbLimit = 2
+  if (Math.round(file.size / 1024 / 1024) > mbLimit) {
+    alert(`File should be limit to ${mbLimit} MB`)
     return false
   }
   return true
@@ -16,6 +16,12 @@ const filePromise = (file: File) => {
   const newFile = new File([file], 'new_name.docx', { type: file.type })
   return Promise.resolve(newFile)
 }
+
+const defaultFileList: UploadFile[] = [
+  { uid: '1001', size: 1234, name: 'hello.tsx', status: 'uploading', percent: 10 },
+  { uid: '1002', size: 1234, name: 'typescript.tsx', status: 'success', percent: 20 },
+  { uid: '1003', size: 1234, name: 'react.tsx', status: 'error', percent: 30 },
+]
 
 const UploadLifeCycle1 = () => (
   <Upload
@@ -29,7 +35,7 @@ const UploadLifeCycle1 = () => (
 const UploadLifeCycle2 = () => (
   <Upload
     action="http://jsonplaceholder.typicode.com/posts"
-    // beforeUpload={checkFileSize}
+    beforeUpload={checkFileSize}
     onChange={action('onChange')}
   />
 )
@@ -42,7 +48,16 @@ const UploadLifeCycle3 = () => (
   />
 )
 
+const UploadWithFileList = () => (
+  <Upload
+    action="http://jsonplaceholder.typicode.com/posts"
+    defaultFileList={defaultFileList}
+    onRemove={action('onRemove')}
+  />
+)
+
 storiesOf('Upload', module)
   .add('默认 Upload', UploadLifeCycle1)
   .add('beforeUpload', UploadLifeCycle2)
   .add('beforeUpload 异步', UploadLifeCycle3)
+  .add('defaultFileList', UploadWithFileList)

@@ -1,0 +1,48 @@
+.upload {
+  width: 300px;
+
+  .upload-list {
+    list-style-type: none;
+    padding-left   : 0;
+
+    .upload-list-item {
+      overflow       : hidden;
+      position       : relative;
+      display        : flex;
+      justify-content: space-between;
+      padding        : .2em .4em;
+
+      .file-name {
+        width      : 100%;
+        text-align : left;
+        margin-left: .5em;
+      }
+
+      .file-status {
+        width     : 20px;
+        transition: opacity .4s;
+      }
+
+      .file-actions {
+        position  : absolute;
+        right     : 5px;
+        top       : 30px;
+        width     : 20px;
+        transition: top .4s;
+      }
+    }
+
+    .upload-list-item:hover {
+      background-color: $gray-1;
+      border-radius   : 4px;
+
+      .file-status {
+        opacity: 0;
+      }
+
+      .file-actions {
+        top: 4px;
+      }
+    }
+  }
+}

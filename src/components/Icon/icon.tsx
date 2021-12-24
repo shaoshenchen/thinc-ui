@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { FontAwesomeIcon, FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
 
 
-export type ThemeProps = 'black' | 'gray' | 'blue'
+export type ThemeProps = 'black' | 'gray' | 'blue' | 'green' | 'red'
 export interface IconProps extends FontAwesomeIconProps {
   theme?: ThemeProps;
 }

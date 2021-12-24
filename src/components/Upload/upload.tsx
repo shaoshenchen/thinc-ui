@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react"
 import axios from "axios"
 import Button from "../Button/button"
+import UploadList from "./uploadList"
 
 
 export type UploadFileStatus = 'ready' | 'uploading' | 'success' | 'error'
@@ -18,23 +19,27 @@ export interface UploadFile {
 
 export interface UploadProps {
   action: string;
+  defaultFileList?: UploadFile[];
   beforeUpload?: (file: File) => boolean | Promise<File>;
   onProgress?: (percentage: number, file: File) => void;
   onSuccess?: (data: any, file: File) => void;
   onError?: (err: any, file: File) => void;
   onChange?: (file: File) => void;
+  onRemove?: (file: UploadFile) => void;
 }
 const Upload: React.FC<UploadProps> = (props) => {
   const {
     action,
+    defaultFileList,
     beforeUpload,
     onProgress,
     onSuccess,
     onError,
     onChange,
+    onRemove,
   } = props
   const fileInput = useRef<HTMLInputElement>(null)
-  const [fileList, setFileList] = useState<UploadFile[]>([])
+  const [fileList, setFileList] = useState<UploadFile[]>(defaultFileList || [])
   const axiosConfig = (file: File, _file: UploadFile) => {
     return {
       headers: {
@@ -117,6 +122,13 @@ const Upload: React.FC<UploadProps> = (props) => {
       })
   }
 
+  const handleRemove = (file: UploadFile) => {
+    setFileList((previousList) => {
+      return previousList.filter((item) => item.uid !== file.uid)
+    })
+    onRemove && onRemove(file)
+  }
+
   const uploadFiles = (files: FileList) => {
     let postFiles = Array.from(files)
     postFiles.forEach((file) => {
@@ -150,6 +162,10 @@ const Upload: React.FC<UploadProps> = (props) => {
       <Button btnType="primary" onClick={handleClick}>Upload File</Button>
 
       {/* 文件数组 */}
+      <UploadList
+        fileList={fileList}
+        onRemove={handleRemove}
+      />
     </div>
   )
 }
