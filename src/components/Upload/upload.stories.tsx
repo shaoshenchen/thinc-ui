@@ -29,7 +29,7 @@ const UploadLifeCycle1 = () => (
 const UploadLifeCycle2 = () => (
   <Upload
     action="http://jsonplaceholder.typicode.com/posts"
-    beforeUpload={checkFileSize}
+    // beforeUpload={checkFileSize}
     onChange={action('onChange')}
   />
 )
