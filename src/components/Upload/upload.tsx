@@ -66,8 +66,6 @@ const Upload: React.FC<UploadProps> = (props) => {
   }
 
   const handleClick = () => {
-    console.log(fileInput.current);
-
     if (fileInput.current) {
       fileInput.current.click()
     }
