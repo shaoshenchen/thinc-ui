@@ -96,3 +96,17 @@ interface MenuItemProps {
 - 分开展示各个组件不同属性下的状态
 - 能追踪组件的行为并且具有属性调试功能
 - 可以为组件自动生成文档和属性列表
+
+# Upload 文件生命周期
+1. 选择文件
+2. beforeUpload(file)
+3. onProgress()
+4. onChange()
+5. onSuccess() | onError()
+6. onRemoved()
+
+# Fetch 的缺点（2019年）
+- 只对网络请求报错，对 400、500 都当作成功的请求
+- 默认不会带 cookie
+- 不支持 abort，不支持超时控制
+- *没有办法原生监测请求的进度
