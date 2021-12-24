@@ -56,8 +56,28 @@ const UploadWithFileList = () => (
   />
 )
 
+const CustomedUpload = () => (
+  <Upload
+    action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+    name='fileName'
+    data={{ 'key': 'value' }}
+    headers={{ "X-Powered-By": "thinc" }}
+  />
+)
+
+const AcceptUpload = () => (
+  <Upload
+    action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+    name='fileName'
+    accept='.jpg'
+    multiple
+  />
+)
+
 storiesOf('Upload', module)
   .add('默认 Upload', UploadLifeCycle1)
   .add('beforeUpload', UploadLifeCycle2)
   .add('beforeUpload 异步', UploadLifeCycle3)
   .add('defaultFileList', UploadWithFileList)
+  .add('CustomedUpload', CustomedUpload)
+  .add('AcceptUpload', AcceptUpload)

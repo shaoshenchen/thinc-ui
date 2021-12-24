@@ -26,6 +26,12 @@ export interface UploadProps {
   onError?: (err: any, file: File) => void;
   onChange?: (file: File) => void;
   onRemove?: (file: UploadFile) => void;
+  headers?: { [key: string]: any };
+  name?: string;
+  data?: { [key: string]: any };
+  withCredentials?: boolean;
+  accept?: string;
+  multiple?: boolean;
 }
 const Upload: React.FC<UploadProps> = (props) => {
   const {
@@ -37,13 +43,20 @@ const Upload: React.FC<UploadProps> = (props) => {
     onError,
     onChange,
     onRemove,
+    headers,
+    name,
+    data,
+    withCredentials,
+    accept,
+    multiple,
   } = props
   const fileInput = useRef<HTMLInputElement>(null)
   const [fileList, setFileList] = useState<UploadFile[]>(defaultFileList || [])
   const axiosConfig = (file: File, _file: UploadFile) => {
     return {
       headers: {
-        'Content-Type': 'multipart/form-data'
+        'Content-Type': 'multipart/form-data',
+        ...headers
       },
       onUploadProgress: (e: any) => {
         let percentage = Math.round((e.loaded * 100) / e.total) || 0
@@ -53,7 +66,8 @@ const Upload: React.FC<UploadProps> = (props) => {
             onProgress(percentage, file)
           }
         }
-      }
+      },
+      withCredentials
     }
   }
 
@@ -98,9 +112,19 @@ const Upload: React.FC<UploadProps> = (props) => {
       percent: 0,
       raw: file
     }
-    setFileList([_file, ...fileList])
+    // setFileList([_file, ...fileList])
+    // 多文件上传
+    setFileList(previousList => {
+      return [_file, ...previousList]
+    })
     const formData = new FormData()
-    formData.append(file.name, file)
+    formData.append(name || 'file', file)
+    // 添加更多的 formData
+    if (data) {
+      Object.keys(data).forEach(key => {
+        formData.append(key, data[key])
+      })
+    }
     axios.post(action, formData, axiosConfig(file, _file))
       .then((res) => {
         updateFileList(_file, { status: 'success', response: res.data })
@@ -153,12 +177,17 @@ const Upload: React.FC<UploadProps> = (props) => {
     })
   }
 
-  console.log(fileList)
-
   return (
     <div className="upload">
       {/* 上传按钮 */}
-      <input ref={fileInput} type="file" style={{ display: 'none' }} onChange={handleFileChange} />
+      <input
+        ref={fileInput}
+        type="file"
+        style={{ display: 'none' }}
+        onChange={handleFileChange}
+        accept={accept}
+        multiple={multiple}
+      />
       <Button btnType="primary" onClick={handleClick}>Upload File</Button>
 
       {/* 文件数组 */}
@@ -168,6 +197,10 @@ const Upload: React.FC<UploadProps> = (props) => {
       />
     </div>
   )
+}
+
+Upload.defaultProps = {
+  name: 'file',
 }
 
 export default Upload
