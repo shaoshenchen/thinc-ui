@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react"
 import axios from "axios"
 import Button from "../Button/button"
 import UploadList from "./uploadList"
+import Dragger from "./dragger"
 
 
 export type UploadFileStatus = 'ready' | 'uploading' | 'success' | 'error'
@@ -32,6 +33,7 @@ export interface UploadProps {
   withCredentials?: boolean;
   accept?: string;
   multiple?: boolean;
+  drag?: boolean;
 }
 const Upload: React.FC<UploadProps> = (props) => {
   const {
@@ -49,6 +51,8 @@ const Upload: React.FC<UploadProps> = (props) => {
     withCredentials,
     accept,
     multiple,
+    drag,
+    children,
   } = props
   const fileInput = useRef<HTMLInputElement>(null)
   const [fileList, setFileList] = useState<UploadFile[]>(defaultFileList || [])
@@ -178,7 +182,7 @@ const Upload: React.FC<UploadProps> = (props) => {
   }
 
   return (
-    <div className="upload">
+    <div className="upload" onClick={handleClick}>
       {/* 上传按钮 */}
       <input
         ref={fileInput}
@@ -188,8 +192,12 @@ const Upload: React.FC<UploadProps> = (props) => {
         accept={accept}
         multiple={multiple}
       />
-      <Button btnType="primary" onClick={handleClick}>Upload File</Button>
-
+      {drag ?
+        <Dragger onFile={(files) => { uploadFiles(files) }}>
+          {children}
+        </Dragger> :
+        { children }
+      }
       {/* 文件数组 */}
       <UploadList
         fileList={fileList}

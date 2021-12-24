@@ -68,4 +68,30 @@
       }
     }
   }
+
+  // 拖拽框
+  .upload-drag {
+    // 被放到拖拽框上
+    &.drag-over {
+      background-color: lighten($blue, 40);
+    }
+    
+    .drag-box {
+      border: 3px dashed $gray-2;
+      border-radius: 4px;
+
+      .drag-icon {
+        color: $blue;
+        font-size: 100px;
+      }
+
+      .drag-text {
+        font-weight: bold;
+      }
+    }
+
+    .drag-box:hover {
+      border-color: $blue;
+    }
+  }
 }

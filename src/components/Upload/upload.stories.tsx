@@ -1,5 +1,6 @@
 import { action } from "@storybook/addon-actions"
 import { storiesOf } from "@storybook/react"
+import Icon from "../Icon/icon"
 import Upload, { UploadFile } from "./upload"
 
 
@@ -74,6 +75,25 @@ const AcceptUpload = () => (
   />
 )
 
+const DraggableUpload = () => (
+  <Upload
+    action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+    name='fileName'
+    accept='.jpg'
+    multiple
+    drag
+  >
+    <div className="drag-box">
+      <span className='drag-icon'>
+        <Icon icon='upload' />
+      </span>
+      <span className='drag-text'>
+        <p>拖动图片到此处上传</p>
+      </span>
+    </div>
+  </Upload>
+)
+
 storiesOf('Upload', module)
   .add('默认 Upload', UploadLifeCycle1)
   .add('beforeUpload', UploadLifeCycle2)
@@ -81,3 +101,4 @@ storiesOf('Upload', module)
   .add('defaultFileList', UploadWithFileList)
   .add('CustomedUpload', CustomedUpload)
   .add('AcceptUpload', AcceptUpload)
+  .add('DraggableUpload', DraggableUpload)
