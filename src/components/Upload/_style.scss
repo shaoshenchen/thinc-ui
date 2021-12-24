@@ -6,29 +6,52 @@
     padding-left   : 0;
 
     .upload-list-item {
-      overflow       : hidden;
-      position       : relative;
-      display        : flex;
-      justify-content: space-between;
-      padding        : .2em .4em;
+      overflow      : hidden;
+      display       : flex;
+      flex-direction: column;
+      padding       : .2em .4em;
 
-      .file-name {
-        width      : 100%;
-        text-align : left;
-        margin-left: .5em;
+      // 上传列表上半部分
+      .item-description {
+        display        : flex;
+        justify-content: space-between;
+        position       : relative;
+
+        .file-name {
+          width      : 100%;
+          text-align : left;
+          margin-left: .5em;
+        }
+
+        .file-status {
+          transition: opacity .4s;
+        }
+
+        .file-actions {
+          position  : absolute;
+          right     : -2px;
+          top       : -30px;
+          width     : 20px;
+          transition: top .4s;
+        }
       }
 
-      .file-status {
-        width     : 20px;
-        transition: opacity .4s;
-      }
+      // 上传列表下半部分
+      .item-progress {
 
-      .file-actions {
-        position  : absolute;
-        right     : 5px;
-        top       : 30px;
-        width     : 20px;
-        transition: top .4s;
+        .progress-bar-outer {
+          border       : 1px solid $gray-3;
+          border-radius: 4px;
+
+          .progress-bar-inner {
+            border-radius: 4px;
+          }
+
+          .color-blue {
+            background-color: $blue;
+            color: $white;
+          }
+        }
       }
     }
 
@@ -41,7 +64,7 @@
       }
 
       .file-actions {
-        top: 4px;
+        top: 0px;
       }
     }
   }

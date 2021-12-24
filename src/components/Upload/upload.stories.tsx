@@ -18,9 +18,9 @@ const filePromise = (file: File) => {
 }
 
 const defaultFileList: UploadFile[] = [
-  { uid: '1001', size: 1234, name: 'hello.tsx', status: 'uploading', percent: 10 },
-  { uid: '1002', size: 1234, name: 'typescript.tsx', status: 'success', percent: 20 },
-  { uid: '1003', size: 1234, name: 'react.tsx', status: 'error', percent: 30 },
+  { uid: '1001', size: 1234, name: 'hello.tsx', status: 'uploading', percent: 30 },
+  { uid: '1002', size: 1234, name: 'typescript.tsx', status: 'success', },
+  { uid: '1003', size: 1234, name: 'react.tsx', status: 'error', },
 ]
 
 const UploadLifeCycle1 = () => (
