@@ -1,10 +1,10 @@
 import React from "react"
 import { CSSTransition } from 'react-transition-group'
-import { CSSTransitionClassNames } from 'react-transition-group/CSSTransition'
+import { CSSTransitionProps } from 'react-transition-group/CSSTransition'
 
 
 type AnimationName = 'zoom-in-top' | 'zoom-in-bottom' | 'zoom-in-left' | 'zoom-in-right'
-interface TransitionProps extends CSSTransitionClassNames {
+interface TransitionProps extends CSSTransitionProps {
   animation?: AnimationName;
   wrapper?: boolean;
 }
