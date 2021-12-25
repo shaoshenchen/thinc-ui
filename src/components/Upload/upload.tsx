@@ -1,6 +1,5 @@
 import React, { useRef, useState } from "react"
 import axios from "axios"
-import Button from "../Button/button"
 import UploadList from "./uploadList"
 import Dragger from "./dragger"
 

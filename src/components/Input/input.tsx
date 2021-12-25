@@ -1,11 +1,11 @@
+import React from "react";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import classNames from "classnames";
-import { FC, InputHTMLAttributes } from "react";
 
 
 type InputSize = 'small' | 'large'
 // Omit 剔除指定类型
-export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
+export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
   className?: string;
   size?: InputSize;
   disabled?: boolean;
@@ -13,7 +13,7 @@ export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 
   append?: IconProp | HTMLElement;
 }
 
-const Input: FC<InputProps> = (props) => {
+const Input: React.FC<InputProps> = (props) => {
   const {
     className,
     size,

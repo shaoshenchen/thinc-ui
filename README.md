@@ -7,6 +7,7 @@ an epic UI components library
 - [ ] 完善 storybook 的 addon-info
 - [ ] storybook 自己看看文档优化
 - [ ] AutoComplete 组件单元测试
+- [ ] Upload 组件单元测试
 
 # 用到的技术
 - React hook
